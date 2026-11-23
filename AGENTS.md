@@ -3,9 +3,6 @@
 > **Estándar universal para ingeniería asistida por IA, agentes autónomos y equipos de desarrollo full-stack.**  
 > Diseñado para crear aplicaciones web de alto rendimiento, seguras, humanas, accesibles y listas para producción.
 
-> [!NOTE]
-> *(To read this complete specification in English, please visit [AGENTS.md](AGENTS.md)).*
-
 ---
 
 ## 0. Protocolo Obligatorio: Entrevista Interactiva de Inicio (Onboarding)
@@ -118,18 +115,28 @@ flowchart TD
 - Mantener las microinteracciones por debajo de `300ms` con curvas de aceleración naturales.
 - Respetar siempre las preferencias de accesibilidad del usuario mediante `prefers-reduced-motion`.
 
-### Paso 6: Seguridad de Backend y Trazabilidad Auditable
-Aplicar las **20 Reglas Estrictas de Seguridad**:
-1. **Row-Level Security (RLS):** Aislamiento estricto de datos en cada tabla de la base de datos.
-2. **Cero Fuga de Secretos:** Jamás exponer claves de servicio (*Service Keys*), tokens privados ni credenciales en código cliente.
-3. **Cookies HttpOnly y SameSite:** Almacenamiento seguro de tokens con protección activa contra CSRF.
-4. **Límite de Tasa por IP (*Rate Limiting*):** Ventana deslizante para mitigar spam y ataques de fuerza bruta en endpoints públicos y mutaciones.
-5. **Protección Anti-IDOR:** Autenticar y autorizar cada lectura y escritura contra la pertenencia real del usuario.
-6. **Validación de Esquema y Sanitización:** Validar entradas con esquemas tipados (como Zod) tanto en cliente como en el borde.
-7. **Consultas Parametrizadas:** Prevenir inyecciones SQL evitando concatenaciones de texto sin sanitizar.
-8. **Almacenamiento Criptográfico de Contraseñas:** Algoritmos robustos (Argon2, bcrypt, PBKDF2) con sal única por usuario.
-9. **Trazabilidad de Consentimiento:** Registrar IP, fecha/hora UTC del servidor, versión de políticas y aceptación explícita para auditorías legales.
-10. **Principio de Menor Privilegio:** Limitar las claves de API únicamente a las tablas y acciones indispensables.
+### Paso 6: Seguridad de Backend y Trazabilidad Auditable (Las 20 Reglas Estrictas)
+
+1. **Row-Level Security (RLS) Obligatorio:** Cada tabla en PostgreSQL debe tener políticas RLS activadas sin excepción; los usuarios solo pueden acceder a sus propios registros.
+2. **Cero Fuga de Secretos en Cliente:** Jamás exponer `SERVICE_ROLE_KEY`, tokens administrativos, claves maestras ni credenciales en código cliente o repositorios.
+3. **Cookies HttpOnly, Secure y SameSite=Strict:** Almacenar tokens de sesión JWT exclusivamente en cookies cifradas inaccesibles para JavaScript, previniendo ataques XSS.
+4. **Protección Anti-CSRF:** Validar cabeceras `Origin` y `Sec-Fetch-Site` en mutaciones de estado (`POST`, `PUT`, `DELETE`).
+5. **Límite de Tasa por IP (*Rate Limiting*):** Implementar ventanas deslizantes en endpoints públicos de login, registro, checkout y comentarios para mitigar fuerza bruta y spam.
+6. **Protección Anti-IDOR (Insecure Direct Object References):** Autenticar y verificar la pertenencia del recurso en el servidor antes de cualquier lectura o escritura; nunca confiar en un `id` enviado por el cliente.
+7. **Validación de Esquema y Sanitización Estricta:** Validar y tipar todas las entradas en el borde y servidor (mediante Zod o equivalente) descartando propiedades no autorizadas.
+8. **Consultas SQL Parametrizadas:** Prevenir inyección SQL utilizando bindings y constructores seguros; queda prohibida la concatenación directa de cadenas.
+9. **Almacenamiento Criptográfico de Contraseñas:** Emplear únicamente algoritmos robustos con sal única por usuario (PBKDF2 con >100,000 iteraciones, Argon2id o bcrypt con coste >= 12).
+10. **Principio de Menor Privilegio (PoLP):** Limitar las claves de API y permisos de base de datos únicamente a las operaciones indispensables requeridas por el frontend.
+11. **Cabeceras HTTP de Seguridad Defensivas:** Configurar en el servidor o Cloudflare Headers: `Content-Security-Policy` (CSP), `X-Frame-Options: DENY` (anti-clickjacking), `X-Content-Type-Options: nosniff` y `Referrer-Policy: strict-origin-when-cross-origin`.
+12. **Forzado Obligatorio de HTTPS (HSTS):** Habilitar `Strict-Transport-Security` con `max-age=31536000; includeSubDomains; preload` para rechazar cualquier conexión no cifrada.
+13. **Sanitización contra Cross-Site Scripting (XSS):** Escapar obligatoriamente cualquier dato renderizado en el DOM mediante funciones de escape HTML antes de insertar contenido dinámico.
+14. **Protección de Enlaces Externos:** Todo enlace con `target="_blank"` debe incluir imperativamente `rel="noopener noreferrer"` para evitar ataques de *tabnabbing*.
+15. **Rotación y Expiración Estricta de Sesiones:** Definir tiempos de expiración cortos para tokens de sesión y ofrecer invalidación y revocación inmediata al hacer logout.
+16. **Protección contra Inyección de Cabeceras y CRLF:** Validar y sanitizar saltos de línea (`\r`, `\n`) en cualquier dato que intervenga en respuestas o cookies del servidor.
+17. **Cero Exposición de Trazas de Error (*Stack Traces*):** En producción, capturar excepciones y responder con mensajes humanos genéricos; jamás exponer trazas internas, rutas del servidor ni versiones de base de datos.
+18. **Control de Tamaño de Carga Útil (*Payload Limits*):** Rechazar peticiones con tamaños superiores al límite esperado (ej: máximo 1MB para JSON y límites específicos en subidas de imágenes) evitando ataques de denegación de servicio (DoS).
+19. **Trazabilidad Auditable de Consentimiento Legal:** Registrar en auditoría inmutable: IP del cliente, marca de tiempo UTC del servidor, versión exacta de los términos aceptados y consentimiento explícito (cumplimiento Ley 1581 / SIC / RGPD).
+20. **Validación de Redirecciones (Anti-Open Redirect):** Validar contra una lista blanca interna cualquier parámetro de redirección (`returnTo`, `redirect_url`) antes de transferir al usuario.
 
 ### Paso 7: Control de Calidad, Accesibilidad y Despliegue
 - Métricas Core Web Vitals: LCP < 2.5s, FID/INP < 200ms, CLS < 0.1.
