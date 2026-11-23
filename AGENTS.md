@@ -94,10 +94,30 @@ flowchart TD
   - `/cookies` (Política de Cookies y Banner de Consentimiento)
   - Canal de atención directa al cliente (PQRS / Soporte)
 
-### Paso 3: Sistema de Diseño y Jerarquía Visual
-- Paleta sobria anclada al logotipo: lienzo neutro, bordes sutiles y un único color de acento intencional.
-- Combinación tipográfica legible y de alto contraste (fuente display para títulos + sans-serif para lectura).
-- Escala de espaciados unificada e iconografía Lucide en formato SVG (nunca emojis en componentes de producción).
+### Paso 3: Sistema de Diseño, Teoría del Color y Jerarquía Visual
+
+> [!TIP]
+> **PREVENCIÓN DE DISEÑOS CLÓNICOS (REGLA ANTI-PLANTILLAS):** El agente tiene estrictamente prohibido usar siempre la misma combinación cliché (ej: negro, gris y dorado para "lujo"). La paleta debe ser 100% única para cada cliente siguiendo estas 3 anclas:
+
+1. **El Logotipo como Ancla Cromática Maestra:**
+   - Extraer obligatoriamente los valores hexadecimales dominantes del logotipo o empaques provistos por el usuario.
+   - Si el logo tiene un tono verde esmeralda, azul zafiro, terracota o cobalto, toda la armonía de la página se construye derivada de ese tono exacto.
+
+2. **Diferenciación de Personalidad por Industria:**
+   - **Lujo Orgánico / Cosmética / Bienestar:** Tonos botánicos, verde bosque, oliva cálido, arena o lino con acentos champaña o bronce (nunca fondos negros fríos o genéricos).
+   - **Lujo Tecnológico / SaaS / Fintech:** Grafito mate, azul cobalto, violeta espacial o pizarra con sutiles transparencias (*glassmorphism*).
+   - **Lujo Gastronómico / Restaurantes:** Burdeos (rojo vino), arcilla, crema cálido y cobre.
+   - **Lujo Minimalista / Moda:** Blanco roto, gris perla, negro carbón y un único acento vibrante intencional.
+
+3. **La Proporción Visual Armónica 60-30-10:**
+   - **60% Lienzo Dominante:** Fondo general neutro y limpio (marfil, nieve, carbón mate o arena según la personalidad).
+   - **30% Estructura y Superficie:** Tarjetas, divisores, paneles y barras secundarias con textura o contraste sutil.
+   - **10% Acento de Conversión:** El color de máxima vibración extraído del logotipo, reservado exclusivamente para botones de acción (*CTA*), precios activos y enlaces clave.
+
+4. **Reglas de Construcción Visual:**
+   - Combinación tipográfica de alto contraste (fuente display con personalidad para títulos + fuente sans-serif altamente legible para lectura y datos).
+   - Escala unificada de espaciados y bordes redondeados consistentes.
+   - Iconografía técnica en formato SVG (Lucide Icons); queda prohibido el uso de emojis informales como iconos en interfaces de producción.
 
 ### Paso 4: Frontend Robusto y Manejo de Estados
 - Cubrir explícitamente los 4 estados fundamentales de cada componente:
