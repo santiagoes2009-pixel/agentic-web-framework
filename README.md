@@ -1,97 +1,97 @@
-# Autonomous Agent Web Development Framework (AGENTS)
+# Framework de Desarrollo Web para Agentes de IA Autónomos (AGENTS)
 
-> **The Universal Standard for AI-Assisted Engineering, Autonomous Agents, and Production Web Development.**
+> **El estándar universal para ingeniería asistida por IA, agentes autónomos y desarrollo web moderno.**
 
-[🇪🇸 Leer en Español (Guía Completa)](README.es.md) | [🇺🇸 English Documentation](README.md)
+[🇪🇸 Estás leyendo la versión en Español](README.es.md) | [🇺🇸 Read in English](README.md)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Standard: AGENTS](https://img.shields.io/badge/Standard-AGENTS.md-emerald.svg)](AGENTS.md)
-[![Spanish Spec](https://img.shields.io/badge/Especificaci%C3%B3n-AGENTS.es.md-orange.svg)](AGENTS.es.md)
+[![Licencia: MIT](https://img.shields.io/badge/Licencia-MIT-blue.svg)](LICENSE)
+[![Estándar: AGENTS](https://img.shields.io/badge/Est%C3%A1ndar-AGENTS.md-emerald.svg)](AGENTS.md)
+[![Especificación en Español](https://img.shields.io/badge/Especificaci%C3%B3n-AGENTS.es.md-orange.svg)](AGENTS.es.md)
 
-This repository provides the universal specification and guidelines for configuring AI coding assistants (Antigravity, Cursor, Windsurf, Copilot, Cline, etc.) to engineer production-ready, accessible, high-performance web applications without common AI mistakes.
-
----
-
-## 🌟 Key Highlights of the Framework
-
-1. **Mandatory Interactive Discovery Protocol (Section 0):**  
-   Before generating code, the AI agent conducts an onboarding interview to capture:
-   - Business model, target audience, and offerings.
-   - Logo and brand assets to mathematically generate the CSS color palette and typography hierarchy.
-   - Functional & non-functional requirements.
-   - Preferred cloud provider and database (with recommended defaults: **Cloudflare Pages/Workers** + **Supabase PostgreSQL**).
-   - Legal jurisdiction to tailor statutory policies (`/terminos`, `/privacidad`, `/cookies`).
-
-2. **Human-Grade Copywriting (Anti-AI Text Standard):**  
-   Enforces a strict ban on generic AI fluff, redundant descriptions, and robotic adjectives. Demands concise, clear, and direct human language.
-
-3. **Zero-Friction Access Standard:**  
-   Guarantees that prices, catalogs, shopping carts, and checkouts are never hidden or locked behind mandatory registrations.
-
-4. **Direct In-Place Interaction:**  
-   Prioritizes responsive on-page forms, inline pickers, and smooth transitions over disruptive nested modals.
-
-5. **20 Strict Security Rules:**  
-   Strict multi-tenant Row-Level Security (RLS), HttpOnly sessions, IP sliding-window rate limiting, anti-IDOR checks, and cryptographically signed consent records.
-
-6. **7-Step End-to-End Methodology:**  
-   From brand discovery to Core Web Vitals audit (LCP < 2.5s, CLS < 0.1, INP < 200ms) and WCAG 2.1 AA accessibility compliance.
+Este repositorio contiene la especificación universal para configurar asistentes de código con IA (Antigravity, Cursor, Windsurf, Copilot, Cline, etc.), asegurando que construyan aplicaciones web de alta calidad, rápidas, accesibles, seguras y libres de textos inflados o redundancias de IA.
 
 ---
 
-## 📁 Repository Structure
+## 🌟 Puntos Clave del Framework
+
+1. **Protocolo Obligatorio de Entrevista Inicial (Fase 0):**  
+   Antes de generar código, el agente de IA realiza una entrevista interactiva para capturar:
+   - Identidad, misión y público objetivo de la empresa.
+   - **Análisis del logo:** Extrae los colores predominantes para generar la paleta CSS/Tailwind y la tipografía adecuada.
+   - Requisitos funcionales y no funcionales.
+   - Elección abierta de servidor y base de datos (con recomendación oficial: **Cloudflare Pages/Workers** + **Supabase PostgreSQL**).
+   - Adaptación legal según el país de operación (`/terminos`, `/privacidad`, `/cookies` y PQRS).
+
+2. **Redacción Humana y Directa (Anti-Texto de IA):**  
+   Prohíbe estrictamente frases largas, párrafos obvios, redundancias y adjetivos artificiales. Exige lenguaje claro, conciso y orientado a la acción.
+
+3. **Acceso Sin Fricción (Zero-Friction):**  
+   Garantiza que el catálogo, precios, carrito y checkout nunca se oculten ni se bloqueen exigiendo inicio de sesión obligatorio.
+
+4. **Interactividad Directa en la Página (In-Place):**  
+   Prioriza formularios y acciones directas en la interfaz frente a ventanas emergentes o modales invasivos.
+
+5. **20 Reglas de Seguridad OWASP:**  
+   Aislamiento con Row-Level Security (RLS), sesiones seguras en cookies HttpOnly, control de límites por IP (*rate limiting*), protección anti-IDOR y consentimiento legal auditable.
+
+6. **Metodología Estricta en 7 Pasos:**  
+   Desde el descubrimiento de marca hasta la auditoría de Core Web Vitals (LCP < 2.5s, CLS < 0.1, INP < 200ms) y accesibilidad WCAG 2.1 AA.
+
+---
+
+## 📁 Estructura del Repositorio
 
 ```
 .
-├── AGENTS.md       # Core standard (in technical English for AI agents)
-├── AGENTS.es.md    # Especificación completa en español (para lectura humana)
-├── README.md       # English overview and documentation
-├── README.es.md    # Documentación y guía de inicio en español
-└── LICENSE         # Open-source MIT License
+├── AGENTS.md       # Estándar principal (en inglés técnico para máxima precisión de la IA)
+├── AGENTS.es.md    # Especificación idéntica en español (para lectura y comprensión humana)
+├── README.md       # Presentación y documentación en inglés
+├── README.es.md    # Presentación y documentación en español
+└── LICENSE         # Licencia de código abierto MIT
 ```
 
 ---
 
-## 🚀 How to Use in Your Project
+## 🚀 Cómo Usarlo en tu Proyecto
 
-### Using with Any AI Coding Assistant
-1. Download or clone this repository.
-2. Copy `AGENTS.md` (and optionally `AGENTS.es.md`) into your project root:
+### Con cualquier Asistente o Agente de IA
+1. Clona o descarga este repositorio.
+2. Copia el archivo `AGENTS.md` (o `AGENTS.es.md`) en la raíz de tu proyecto web:
    ```bash
-   cp AGENTS.md /path/to/your/project/
+   cp AGENTS.md /ruta/a/tu/proyecto/
    ```
-3. Prompt your AI assistant:  
-   *"Follow all rules, protocols, and discovery steps specified in `AGENTS.md`."*
+3. Indícale a tu IA:  
+   *"Sigue al pie de la letra las reglas, protocolos y pasos especificados en `AGENTS.md`."*
 
 ---
 
-## 🛠️ Recommended Ecosystem Stack
+## 🛠️ Pila Tecnológica Recomendada
 
-| Layer | Standard Technology | Why |
+| Capa | Tecnología | Por qué se recomienda |
 | :--- | :--- | :--- |
-| **Styling** | Tailwind CSS / CSS Variables | Scalable token-based styling without CSS bloat |
-| **Components** | Accessible Headless UI / WAI-ARIA | Modular primitives with keyboard focus control |
-| **Motion** | GSAP & Motion (Framer) | Hardware-accelerated transitions under 300ms |
-| **Media** | Swiper.js | Mobile-first touch-friendly carousels |
-| **Icons** | Lucide Icons (SVG) | High-contrast, clean icons (zero informal emojis) |
-| **Edge Hosting** | Cloudflare Pages & Workers | Instant global edge CDN with zero cold starts |
-| **Database & Auth** | Supabase (PostgreSQL + RLS) | Strict multi-tenant security and signed sessions |
+| **Estilos** | Tailwind CSS / Variables CSS | Diseño basado en tokens, ultrarrápido y sin sobrepeso |
+| **Componentes** | Headless UI Accesible / WAI-ARIA | Primitivas accesibles con control total de navegación |
+| **Animación** | GSAP y Motion (Framer) | Microinteracciones fluidas por hardware bajo 300ms |
+| **Carruseles** | Swiper.js | Soporte táctil móvil prioritario y acelerado por GPU |
+| **Iconos** | Lucide Icons (SVG) | Iconografía sobria y profesional (cero emojis en UI) |
+| **Hosting en el Borde** | Cloudflare Pages & Workers | Red global con latencia mínima y cero arranques en frío |
+| **Base de Datos y Auth** | Supabase (PostgreSQL + RLS) | Seguridad estricta por fila, sesiones firmadas y ACID |
 
 ---
 
-## 🤝 Credits & Acknowledgments
+## 🤝 Créditos y Agradecimientos
 
-This standard synthesizes best engineering practices from open-source pioneers:
-- [Tailwind CSS](https://tailwindcss.com) by Tailwind Labs
-- [Lucide Icons](https://lucide.dev) by Lucide Project & Community
-- [GSAP](https://gsap.com) by GreenSock
-- [Swiper](https://swiperjs.com) by Vladimir Kharlampidi
-- [Cloudflare Pages & Workers](https://developers.cloudflare.com/pages/) by Cloudflare
-- [Supabase](https://supabase.com) by Supabase Team & PostgreSQL Community
-- [W3C Web Accessibility Initiative](https://www.w3.org/WAI/)
+Este estándar reúne y sintetiza las mejores herramientas de la comunidad de código abierto:
+- [Tailwind CSS](https://tailwindcss.com) por Tailwind Labs
+- [Lucide Icons](https://lucide.dev) por el Proyecto y Comunidad Lucide
+- [GSAP](https://gsap.com) por GreenSock
+- [Swiper](https://swiperjs.com) por Vladimir Kharlampidi
+- [Cloudflare Pages & Workers](https://developers.cloudflare.com/pages/) por Cloudflare
+- [Supabase](https://supabase.com) por Supabase y la comunidad PostgreSQL
+- [W3C Web Accessibility Initiative (WAI-ARIA)](https://www.w3.org/WAI/)
 
 ---
 
-## 📄 License
+## 📄 Licencia
 
-Released under the [MIT License](LICENSE). Free for developers, agencies, and autonomous agent frameworks worldwide.
+Publicado bajo la [Licencia MIT](LICENSE). Totalmente libre y gratuito para desarrolladores, agencias y creadores de agentes de IA en todo el mundo.
