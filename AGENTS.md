@@ -129,10 +129,11 @@ flowchart TD
   - `[ ] He leído y acepto los Términos y Condiciones`
   - `[ ] He leído y acepto la Política de Privacidad`
 
-### Paso 5: Motor de Animación y Rendimiento
+### Paso 5: Motor de Animación, Rendimiento y Contención de Capas
 - **Animaciones Aceleradas por GPU:** Animar únicamente propiedades compuestas por GPU: `transform` y `opacity`.
 - **Revelaciones Fluidas:** Emplear GSAP ScrollTrigger o Framer Motion para entradas escalonadas y revelaciones al hacer scroll.
 - **Microinteracciones Rápidas:** Mantener las transiciones por debajo de `300ms` con curvas de aceleración naturales.
+- **Control Suave de Scroll y Bloqueo de Capas (Scroll & Overlay Locking):** Prevenir saltos de diseño (*layout shifts*), desbordamientos horizontales indeseados y bloqueos de touchpad de dos dedos al abrir cajones (*drawers*), carritos laterales o modales (bloqueo suave del scroll de fondo y soporte para scroll nativo fluido tipo Lenis).
 - **Accesibilidad Motriz:** Respetar siempre las preferencias del usuario mediante `prefers-reduced-motion`.
 
 ### Paso 6: Seguridad de Backend y Trazabilidad Auditable (Las 20 Reglas Estrictas)
@@ -161,9 +162,6 @@ flowchart TD
 ### Paso 7: Control de Calidad, Propiedad Intelectual, Accesibilidad y Despliegue
 - **Métricas Core Web Vitals:** Rendimiento de clase mundial (LCP < 2.5s, FID/INP < 200ms, CLS < 0.1).
 - **Accesibilidad Inclusiva:** Cumplimiento estricto de WCAG 2.1 Nivel AA (contraste de color ≥ 4.5:1, control completo de foco por teclado, roles y atributos ARIA).
-- **Cumplimiento Estricto de Propiedad Intelectual y Licencias de Activos (*Asset Licensing*):**
-  - El agente tiene la obligación absoluta de emplear únicamente imágenes, fuentes tipográficas, íconos y librerías que cuenten con **licencias comerciales permisivas y libres** (MIT, Apache 2.0, SIL Open Font, Unsplash, Pexels) o activos propios legítimos provistos por el usuario.
-  - Queda **estrictamente prohibido el raspado (*scraping*) no autorizado o la incrustación de imágenes protegidas con derechos de autor** obtenidas de buscadores web.
 - **SEO y Rastreadores:** Generación limpia de `sitemap.xml`, `robots.txt` y metadatos Open Graph para previsualización social.
 - **Analítica Externa y Privacidad:** Bloquear scripts de seguimiento (GA4, Meta Pixel) hasta que el visitante otorgue consentimiento afirmativo en el banner de cookies.
 
