@@ -41,14 +41,7 @@ El usuario tiene total libertad para elegir cualquier proveedor de nube o base d
 ### Arquitectura Limpia y Separación de Responsabilidades
 - **Separación Explícita de Archivos:** Mantén cada lenguaje en archivos dedicados (`.html`, `.css`, `.js`, `.ts`). Evita estilos en línea, scripts incrustados en atributos o archivos monolíticos desordenados.
 - **Elección por Ajuste Real:** Prioriza soluciones ligeras y probadas que maximicen el rendimiento, claridad y mantenimiento sobre capas innecesarias de librerías.
-
-### Acceso Sin Fricción y Autenticación Selectiva para Máxima Conversión
-- **Navegación y Compra 100% Abierta (Cero Barreras al Detal):** Prohibido bloquear u ocultar el catálogo general, precios al detal, bolsa de compras, proceso de checkout o botón de pedido por WhatsApp tras muros de login. Cualquier visitante debe poder explorar y comprar como invitado (*Guest Checkout*) con máxima agilidad.
-- **Lectura Pública de Reseñas y Prueba Social:** Las calificaciones por estrellas, fotos reales y testimonios de clientes deben ser 100% públicos y visibles para cualquier visitante sin iniciar sesión, impulsando la confianza inmediata y el posicionamiento SEO.
-- **Autenticación Selectiva Estratégica (Solo donde agrega valor y seguridad):**
-  - **Publicación de Reseñas con Insignia de Confianza:** Exigir inicio de sesión rápido (soporte en 1 clic tipo Google OAuth) únicamente al momento de redactar una reseña. El sistema debe cruzar la base de datos para asignar automáticamente la insignia `✓ Compra Verificada`, blindando la tienda contra spam o reseñas falsas de la competencia.
-  - **Portal Privado de Mayoristas / B2B:** Catálogo mayorista, escalas de precios con descuento por volumen y márgenes comerciales estrictamente protegidos tras login obligatorio. Requiere aprobación previa de cuenta tras verificar datos del negocio y aplica validación automática de pedido mínimo en carrito antes del checkout.
-  - **Herramientas de Retención y Fidelización:** Acceso autenticado opcional para lista de deseos persistente (*Wishlist*) y seguimiento en vivo del estado de preparación y despacho de pedidos (`/mis-pedidos`).
+- **Acceso Sin Fricción (Cero Barreras Artificiales):** Nunca ocultes ni bloquees el catálogo, precios, bolsa de compras o flujo de checkout detrás de inicios de sesión obligatorios. Permite que el visitante explore, añada al carrito y compre con total fluidez.
 
 ### Redacción Humana y Directa (Estándar Anti-Texto de IA)
 - **Cero Redundancias de IA:** Prohibido el texto inflado, introducciones robóticas, descripciones obvias y adjetivos artificiales (ej: *"en el bullicioso mundo digital de hoy", "solución revolucionaria e integral"*).
@@ -126,19 +119,12 @@ flowchart TD
    - Escala unificada de espaciados y bordes redondeados consistentes.
    - Iconografía técnica en formato SVG (Lucide Icons); queda prohibido el uso de emojis informales como iconos en interfaces de producción.
 
-### Paso 4: Frontend Robusto, Manejo de Estados y Flujos de Conversión
+### Paso 4: Frontend Robusto y Manejo de Estados
 - Cubrir explícitamente los 4 estados fundamentales de cada componente:
   - **Carga (Loading):** Esqueletos elegantes con efecto shimmer o pulso sutil.
   - **Vacío (Empty):** Explicación humana y llamada a la acción clara.
   - **Error (Error):** Mensaje comprensible con opción de reintento directo.
   - **Éxito (Success):** Confirmación limpia, recibo de pedido o retroalimentación inmediata.
-- **Flujo de Reseñas de Alta Credibilidad:**
-  - Reseñas e historial de estrellas legibles por cualquier visitante.
-  - Al presionar "Dejar Reseña", si el usuario no ha iniciado sesión, desplegar un modal ágil con inicio de sesión rápido en 1 clic (Google OAuth o correo sin contraseñas engorrosas).
-  - Verificación en base de datos para asignar la insignia `✓ Compra Verificada`.
-- **Flujo de Portal Mayorista B2B Integrado:**
-  - Formulario de registro con captura de datos fiscales/comerciales para aprobación.
-  - Interfaz exclusiva de compra al por mayor con cálculo dinámico de descuentos por volumen y bloqueo de checkout si no cumple el monto o cantidad mínima requerida.
 - Todo formulario que recolecte datos personales debe incluir **dos casillas independientes de consentimiento, desmarcadas por defecto**:
   - `[ ] He leído y acepto los Términos y Condiciones`
   - `[ ] He leído y acepto la Política de Privacidad`
