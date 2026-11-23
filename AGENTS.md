@@ -129,15 +129,11 @@ flowchart TD
   - `[ ] He leído y acepto los Términos y Condiciones`
   - `[ ] He leído y acepto la Política de Privacidad`
 
-### Paso 5: Motor de Animación, Rendimiento y Contención de Capas
+### Paso 5: Motor de Animación y Rendimiento
 - **Animaciones Aceleradas por GPU:** Animar únicamente propiedades compuestas por GPU: `transform` y `opacity`.
 - **Revelaciones Fluidas:** Emplear GSAP ScrollTrigger o Framer Motion para entradas escalonadas y revelaciones al hacer scroll.
 - **Microinteracciones Rápidas:** Mantener las transiciones por debajo de `300ms` con curvas de aceleración naturales.
 - **Accesibilidad Motriz:** Respetar siempre las preferencias del usuario mediante `prefers-reduced-motion`.
-- **Control Suave de Scroll, Touchpad y Bloqueo de Capas (*Overlay Locking*):**
-  - Al abrir cajones deslizables (*drawers*) o diálogos modales, bloquear suavemente el scroll de fondo (`overlay-locked` en `body` y `html`).
-  - Prevenir desbordamientos horizontales (`overflow-x: hidden`) y saltos de diseño (*layout shifts*) por la barra de desplazamiento.
-  - Asegurar soporte táctil suave y aislamiento activo de gestos de touchpad con dos dedos, pausando e interactuando limpiamente con motores de scroll fluido (tipo Lenis).
 
 ### Paso 6: Seguridad de Backend y Trazabilidad Auditable (Las 20 Reglas Estrictas)
 
