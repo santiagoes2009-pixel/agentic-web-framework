@@ -1,170 +1,175 @@
-# Estándares y Directrices para Agentes de IA Autónomos en Desarrollo Web
+# Standards and Guidelines for Autonomous AI Agents in Web Development
 
-> **Estándar universal para ingeniería asistida por IA, agentes autónomos y equipos de desarrollo full-stack.**  
-> Diseñado para crear aplicaciones web de alto rendimiento, seguras, humanas, accesibles y listas para producción.
+> **Universal standard for AI-assisted engineering, autonomous agents, and full-stack development teams.**  
+> Designed for building high-performance, compliant, secure, human-crafted, and production-grade web applications.
+
+> [!NOTE]
+> **LANGUAGE DIRECTIVE FOR THE AI AGENT:** You must communicate, interview, and interact with the user in the user's preferred language (e.g., Spanish, English, etc.) while rigorously enforcing the architecture, security, and design standards defined below.
+>
+> *(Para leer esta especificación completa en español, consulte [AGENTS.es.md](AGENTS.es.md)).*
 
 ---
 
-## 0. Protocolo Obligatorio: Entrevista Interactiva de Inicio (Onboarding)
+## 0. Mandatory Agent Protocol: Interactive Discovery & Onboarding
 
 > [!IMPORTANT]
-> **REGLA FUNDAMENTAL PARA EL AGENTE DE IA:** Antes de escribir, modificar o estructurar una sola línea de código del proyecto, el agente **DEBE** iniciar una entrevista interactiva con el usuario. El agente recopilará las respuestas a las siguientes 5 dimensiones para adaptar la arquitectura, el estilo visual, los textos y el marco legal:
+> **RULE FOR THE AI AGENT:** Before generating, modifying, or architecting any project code, the agent **MUST** initiate an interactive interview with the user. The agent must gather the answers to the following 5 dimensions to tailor the architecture, visual style, copy, and legal framework:
 
-### 1. Identidad de Marca y Contexto Visual
-- **Nombre de la Empresa y Misión:** ¿Cómo se llama el negocio, qué hace y qué valor aporta a sus clientes?
-- **Logotipo y Recursos Visuales:** ¿Cuáles son los colores predominantes, formas y personalidad del logo? El agente debe extraer los tokens de color (Primario, Acento, Fondo, Superficie) y sugerir combinaciones tipográficas armonizadas con este ancla visual.
-- **Tono y Personalidad de Marca:** Lujo, clínico/dermatológico, minimalista, orgánico/botánico, técnico/desarrollador, fresco/divertido o institucional.
+### 1. Brand Identity & Visual Context
+- **Company Name & Core Mission:** What is the business name, what does it do, and what value does it deliver?
+- **Logo & Visual Assets:** What are the logo's dominant colors, geometry, and personality? The agent must extract color tokens (Primary, Accent, Canvas, Surface) and recommend typography pairings based on this visual anchor.
+- **Brand Tone & Mood:** Luxury, clinical/dermatological, minimalist, organic/botanical, technical/developer, playful, or institutional.
 
-### 2. Productos, Servicios y Modelo de Negocio
-- **Oferta Comercial:** Productos físicos (e-commerce), descargas digitales, suscripciones SaaS, consultorías/citas o captura de clientes potenciales (leads).
-- **Oferta Estrella:** ¿Cuál es el producto principal o el objetivo central de conversión?
+### 2. Products, Services & Business Model
+- **Commercial Offering:** Physical goods (e-commerce), digital downloads, SaaS subscriptions, consulting/appointments, or lead generation.
+- **Hero Offer:** What is the flagship product or core conversion target?
 
-### 3. Casos de Uso y Requisitos del Sistema
-- **Requisitos Funcionales:** Capacidades exactas del usuario (navegación de catálogo, bolsa de compras en tiempo real, checkout multi-paso, agendamiento de citas, test de diagnóstico interactivo, pedidos directos a WhatsApp, calificaciones y comentarios por estrellas, motor de cupones de descuento).
-- **Requisitos No Funcionales:** Metas de rendimiento (Core Web Vitals: LCP < 2.5s, CLS < 0.1, INP < 200ms), estándar de accesibilidad (WCAG 2.1 Nivel AA), diseño móvil prioritario (*mobile-first*) y cero saltos de diseño (*layout shift*).
+### 3. Use Cases & System Requirements
+- **Functional Requirements:** Exact user capabilities (browsing, real-time cart, multi-step checkout, appointment scheduler, interactive diagnostic quiz, direct-to-WhatsApp orders, star ratings & reviews, coupon engine).
+- **Non-Functional Requirements:** Performance benchmarks (Core Web Vitals: LCP < 2.5s, CLS < 0.1, INP < 200ms), accessibility target (WCAG 2.1 Level AA), responsive breakpoints (mobile-first), and zero layout shift.
 
-### 4. Elección de Infraestructura, Servidor y Base de Datos
-El usuario tiene total libertad para elegir cualquier proveedor de nube o base de datos. El agente debe consultar qué stack prefiere y ofrecer la recomendación de referencia de este estándar:
-- **Hosting en el Borde y DNS Recomendado:** **Cloudflare Pages & Workers** (CDN global instantánea, ejecución serverless en el borde con ultra baja latencia, seguridad nativa y cero arranques en frío).
-- **Base de Datos y Autenticación Recomendada:** **Supabase (PostgreSQL)** (Row-Level Security estricto para aislamiento multi-inquilino, transacciones relacionales ACID, sesiones seguras en cookies HttpOnly y almacenamiento cifrado).
-- *Flexibilidad Abierta:* Si el usuario prefiere AWS, Vercel, Firebase, Docker, MySQL, SQLite o MongoDB, el agente debe adaptar la arquitectura limpiamente sin romper la separación de responsabilidades.
+### 4. Infrastructure, Server & Database Selection
+The user may choose any cloud provider or database. The agent must inquire which stack the user prefers and provide the framework's recommended baseline:
+- **Recommended Edge Hosting & DNS:** **Cloudflare Pages & Workers** (instant global CDN, ultra-low latency serverless edge execution, native security, and zero cold starts).
+- **Recommended Database & Auth:** **Supabase (PostgreSQL)** (strict multi-tenant Row-Level Security (RLS), ACID relational transactions, secure HttpOnly sessions, and encrypted storage).
+- *Open Flexibility:* If the user specifies AWS, Vercel, Firebase, Docker, MySQL, SQLite, or MongoDB, the agent must adapt the architecture cleanly without breaking separation of concerns.
 
-### 5. Jurisdicción Legal y Cumplimiento Normativo
-- **Jurisdicción de Operación:** ¿En qué país o marco legal opera la aplicación? (ej: Colombia: Ley 1581 / SIC, Unión Europea: RGPD, Estados Unidos: CCPA / FTC, México: LFPDPPP).
-- **Contenido Legal Obligatorio:** Redactar a medida las páginas obligatorias: `/terminos`, `/privacidad`, `/cookies` y canal de atención de peticiones, quejas y reclamos (PQRS / Soporte).
-- **Trazabilidad Auditable de Consentimiento:** Guardar IP del cliente, marca de tiempo UTC del servidor, versión de las políticas aceptadas y consentimiento booleano explícito.
-
----
-
-## 1. Principios Fundamentales y Arquitectura
-
-### Arquitectura Limpia y Separación de Responsabilidades
-- **Separación Explícita de Archivos:** Mantén cada lenguaje en archivos dedicados (`.html`, `.css`, `.js`, `.ts`). Evita estilos en línea, scripts incrustados en atributos o archivos monolíticos desordenados.
-- **Elección por Ajuste Real:** Prioriza soluciones ligeras y probadas que maximicen el rendimiento, claridad y mantenimiento sobre capas innecesarias de librerías.
-- **Acceso Sin Fricción (Cero Barreras Artificiales):** Nunca ocultes ni bloquees el catálogo, precios, bolsa de compras o flujo de checkout detrás de inicios de sesión obligatorios. Permite que el visitante explore, añada al carrito y compre con total fluidez.
-
-### Redacción Humana y Directa (Estándar Anti-Texto de IA)
-- **Cero Redundancias de IA:** Prohibido el texto inflado, introducciones robóticas, descripciones obvias y adjetivos artificiales (ej: *"en el bullicioso mundo digital de hoy", "solución revolucionaria e integral"*).
-- **Directo, Conciso y Humano:** Títulos cortos, descripciones prácticas y botones con etiquetas claras y naturales (ej: *"Añadir"*, *"Pedir por WhatsApp"*, *"Confirmar Pedido"*).
-
-### Interactividad Directa en la Página (In-Place)
-- Prefiere interacciones directas en la misma página (formularios limpios, acordeones fluidos, selectores de estrellas directos) sobre ventanas modales invasivas o menús desplegables pesados.
+### 5. Legal Jurisdiction & Compliance Adaptation
+- **Operating Jurisdiction:** In which country or legal framework does the application operate? (e.g., Colombia: Ley 1581 / SIC, European Union: GDPR, United States: CCPA / FTC, Mexico: LFPDPPP).
+- **Mandatory Statutory Content:** Automatically generate bespoke `/terminos`, `/privacidad`, `/cookies`, and customer claims channel (PQRS / Support).
+- **Audit Consent Traceability:** Configure storage of client IP, server UTC timestamp, legal policy version accepted, and explicit boolean consent.
 
 ---
 
-## 2. Pila Tecnológica Recomendada
+## 1. Core Principles & Architecture
 
-| Capa | Tecnología Recomendada | Propósito |
+### Clean Architecture & Separation of Concerns
+- **Explicit Language Separation:** Keep languages in dedicated files (`.html`, `.css`, `.js`, `.ts`). Avoid inline styles, inline script attributes, or bloated monolithic files.
+- **Problem-Fit Selection:** Prioritize lightweight, battle-tested solutions that maximize performance, clarity, and maintainability over unnecessary framework layers.
+- **Zero-Friction Access (No Artificial Barriers):** Never hide catalog items, product prices, shopping bags, or checkout flows behind forced account creation or login prompts. Let visitors explore, add to cart, and buy seamlessly.
+
+### Human-Grade Copywriting (Anti-AI Text Standard)
+- **Eliminate AI Verbosity:** Ban filler sentences, robotic intros, redundant descriptions, and unnatural adjectives (e.g., "en el bullicioso mundo de hoy", "solución revolucionaria e integral").
+- **Concise & Direct:** Use human, conversational, punchy copy. Keep titles short, descriptions actionable, and button labels obvious (e.g., *"Añadir"*, *"Pedir por WhatsApp"*, *"Confirmar Pedido"*).
+
+### In-Place Direct Interactivity
+- Favor direct on-page interactions (clean inline forms, accordion answers, instant star pickers) over disruptive nested modals or cascading popups whenever possible.
+
+---
+
+## 2. Recommended Technology Stack
+
+| Layer | Recommended Technology | Purpose |
 | :--- | :--- | :--- |
-| **Estilos y Sistema de Diseño** | Tailwind CSS / Variables CSS | Estilos escalables basados en tokens y diseño responsivo rápido |
-| **Componentes de Interfaz** | Headless UI Accesible / WAI-ARIA | Primitivas de interfaz sin estilos obligados, modulares y accesibles |
-| **Animación y Dinamismo** | GSAP (GreenSock) y Motion (Framer) | Líneas de tiempo interactivas de alta precisión y gestos táctiles fluidos |
-| **Carruseles y Medios** | Swiper.js | Carruseles acelerados por hardware con soporte táctil prioritario |
-| **Iconografía y Tipografía** | Lucide Icons (SVG) y Tipografías de alto contraste | Iconos profesionales y limpios (cero emojis informales en la interfaz) |
-| **Hosting en el Borde y DNS** | Cloudflare Pages / Workers / Edge Rules | Computación en el borde global con mínima latencia y máxima seguridad |
-| **Persistencia y Autenticación** | Supabase (PostgreSQL + RLS) / SQLite Edge | Integridad relacional con seguridad a nivel de fila y sesiones firmadas |
+| **Styling & Design System** | Tailwind CSS / CSS Variables | Scalable token-based styling and rapid responsive layouts |
+| **Component Philosophy** | Accessible Headless UI / WAI-ARIA | Unstyled, modular, accessible interface primitives |
+| **Motion & Dynamics** | GSAP (GreenSock) & Motion (Framer) | High-precision interactive timelines and declarative gesture animations |
+| **Carousels & Media** | Swiper.js | Touch-first, responsive, hardware-accelerated carousels |
+| **Icons & Typography** | Lucide Icons (SVG) & High-contrast typography | Clean professional iconography (zero informal emojis in production UI) |
+| **Edge Hosting & DNS** | Cloudflare Pages / Workers / Edge Rules | Ultra-low latency, globally distributed edge computing and security |
+| **Persistence & Auth** | Supabase (PostgreSQL + RLS) / SQLite Edge | Relational integrity with strict Row-Level Security and signed sessions |
 
 ---
 
-## 3. Metodología Estricta en 7 Pasos de Desarrollo
+## 3. Strict 7-Step Development Methodology
 
 ```mermaid
 flowchart TD
-    A["0. Entrevista, Descubrimiento y Marca"] --> B["1. Alcance y Requisitos Legales"]
-    B --> C["2. Flujos, Estructura Base y Rutas"]
-    C --> D["3. Sistema de Diseño y Estilos Dinámicos"]
-    D --> E["4. Estados Frontend y UX Sin Fricción"]
-    E --> F["5. Animaciones Fluidas y Microinteracciones"]
-    F --> G["6. Backend, RLS y Trazabilidad"]
-    G --> H["7. Auditoría, WCAG 2.1 AA y Lanzamiento"]
+    A["0. Onboarding, Discovery & Brand Context"] --> B["1. Scope & Legal Requirements"]
+    B --> C["2. Flows, Base Structure & Routes"]
+    C --> D["3. Design System & Dynamic Styling"]
+    D --> E["4. Frontend States & Zero-Friction UI"]
+    E --> F["5. Fluid Motion & Micro-interactions"]
+    F --> G["6. Backend, RLS & Traceability"]
+    G --> H["7. Audit, WCAG 2.1 AA & Launch"]
 ```
 
-### Paso 1: Alcance, Casos de Uso y Cumplimiento Legal
-- Definir las rutas exactas del usuario y los límites transaccionales.
-- Responder las 3 preguntas legales obligatorias:
-  1. *¿Qué datos personales específicos se recopilan y con qué finalidad?*
-  2. *¿Bajo qué jurisdicción legal opera la transacción?*
-  3. *¿Qué garantías, políticas de devolución y compromisos comerciales se ofrecen?*
+### Step 1: Scope, Use Cases & Legal Compliance
+- Define exact user journeys and transaction boundaries.
+- Address the 3 mandatory legal questions:
+  1. *What specific personal data is collected and why?*
+  2. *Under which legal jurisdiction does the transaction operate?*
+  3. *What warranties, refund terms, and commercial promises are offered?*
 
-### Paso 2: Contenido, Flujos de Conversión y Rutas Obligatorias
-- Construir embudos completos y ciclos de vida del usuario.
-- Incluir obligatoriamente las páginas legales estatutarias:
-  - `/terminos` (Términos y Condiciones)
-  - `/privacidad` (Política de Privacidad)
-  - `/cookies` (Política de Cookies y Banner de Consentimiento)
-  - Canal de atención directa al cliente (PQRS / Soporte)
+### Step 2: Content, User Flows & Mandatory Routes
+- Build complete conversion funnels and user lifecycles.
+- Always include mandatory statutory pages:
+  - `/terminos` (Terms & Conditions)
+  - `/privacidad` (Privacy Policy)
+  - `/cookies` (Cookie Policy & Consent Banner)
+  - Direct support / customer claims channel (PQRS / Support Tickets)
 
-### Paso 3: Sistema de Diseño y Jerarquía Visual
-- Paleta sobria anclada al logotipo: lienzo neutro, bordes sutiles y un único color de acento intencional.
-- Combinación tipográfica legible y de alto contraste (fuente display para títulos + sans-serif para lectura).
-- Escala de espaciados unificada e iconografía Lucide en formato SVG (nunca emojis en componentes de producción).
+### Step 3: Design System & Visual Hierarchy
+- Generate a restrained palette anchored to the company logo: neutral canvas, distinct borders, and a single intentional accent color.
+- High-contrast, legible typography pairing (display + sans-serif).
+- Unified spacing scale and Lucide SVG icons (never emojis in production UI elements).
 
-### Paso 4: Frontend Robusto y Manejo de Estados
-- Cubrir explícitamente los 4 estados fundamentales de cada componente:
-  - **Carga (Loading):** Esqueletos elegantes con efecto shimmer o pulso sutil.
-  - **Vacío (Empty):** Explicación humana y llamada a la acción clara.
-  - **Error (Error):** Mensaje comprensible con opción de reintento directo.
-  - **Éxito (Success):** Confirmación limpia, recibo de pedido o retroalimentación inmediata.
-- Todo formulario que recolecte datos personales debe incluir **dos casillas independientes de consentimiento, desmarcadas por defecto**:
-  - `[ ] He leído y acepto los Términos y Condiciones`
-  - `[ ] He leído y acepto la Política de Privacidad`
+### Step 4: Robust Frontend & State Management
+- Explicitly cover all 4 fundamental UI states:
+  - **Loading:** Subtle shimmer/pulse skeletons.
+  - **Empty:** Clear explanation and actionable prompt.
+  - **Error:** Human-readable message with a retry mechanism.
+  - **Success:** Clear confirmation, receipt code, or feedback.
+- Forms collecting personal data must incorporate **two independent, unchecked-by-default legal checkboxes**:
+  - `[ ] I accept the Terms and Conditions`
+  - `[ ] I accept the Privacy Policy`
 
-### Paso 5: Motor de Animación y Rendimiento
-- Animar únicamente propiedades compuestas por GPU: `transform` y `opacity`.
-- Emplear GSAP ScrollTrigger o Framer Motion para entradas escalonadas y revelaciones al hacer scroll.
-- Mantener las microinteracciones por debajo de `300ms` con curvas de aceleración naturales.
-- Respetar siempre las preferencias de accesibilidad del usuario mediante `prefers-reduced-motion`.
+### Step 5: Animation Engine & Performance
+- Animate only GPU-friendly composite properties: `transform` and `opacity`.
+- Use GSAP ScrollTrigger or Framer Motion for scroll-reveals and staggered entrances.
+- Keep micro-interactions under `300ms` with natural cubic-bezier easing.
+- Respect user accessibility preferences via `prefers-reduced-motion`.
 
-### Paso 6: Seguridad de Backend y Trazabilidad Auditable
-Aplicar las **20 Reglas Estrictas de Seguridad**:
-1. **Row-Level Security (RLS):** Aislamiento estricto de datos en cada tabla de la base de datos.
-2. **Cero Fuga de Secretos:** Jamás exponer claves de servicio (*Service Keys*), tokens privados ni credenciales en código cliente.
-3. **Cookies HttpOnly y SameSite:** Almacenamiento seguro de tokens con protección activa contra CSRF.
-4. **Límite de Tasa por IP (*Rate Limiting*):** Ventana deslizante para mitigar spam y ataques de fuerza bruta en endpoints públicos y mutaciones.
-5. **Protección Anti-IDOR:** Autenticar y autorizar cada lectura y escritura contra la pertenencia real del usuario.
-6. **Validación de Esquema y Sanitización:** Validar entradas con esquemas tipados (como Zod) tanto en cliente como en el borde.
-7. **Consultas Parametrizadas:** Prevenir inyecciones SQL evitando concatenaciones de texto sin sanitizar.
-8. **Almacenamiento Criptográfico de Contraseñas:** Algoritmos robustos (Argon2, bcrypt, PBKDF2) con sal única por usuario.
-9. **Trazabilidad de Consentimiento:** Registrar IP, fecha/hora UTC del servidor, versión de políticas y aceptación explícita para auditorías legales.
-10. **Principio de Menor Privilegio:** Limitar las claves de API únicamente a las tablas y acciones indispensables.
+### Step 6: Backend Security & Audit Traceability
+Enforce the standard **20 Security Rules**:
+1. **Row-Level Security (RLS):** Strict multi-tenant isolation on every table.
+2. **Zero Secret Leaks:** Never expose Service Keys, private tokens, or connection strings in client code.
+3. **HttpOnly & SameSite Cookies:** Secure token storage with CSRF protection.
+4. **IP Rate Limiting:** Enforce sliding-window rate limits on all public and mutation endpoints.
+5. **Anti-IDOR Protection:** Authenticate and authorize every read/write against user ownership, never trust client-provided IDs.
+6. **Input Sanitization & Schema Validation:** Validate with Zod or equivalent schemas on both client and edge.
+7. **SQL Parameterization:** Prevent injection attacks by never concatenating raw query strings.
+8. **Cryptographic Password Storage:** Use PBKDF2 / Argon2 / bcrypt with per-user salt.
+9. **Consent Traceability:** Store client IP, server timestamp (UTC), legal version accepted, and consent booleans for data audits.
+10. **Principle of Least Privilege:** Scope API keys strictly to required tables and actions.
 
-### Paso 7: Control de Calidad, Accesibilidad y Despliegue
-- Métricas Core Web Vitals: LCP < 2.5s, FID/INP < 200ms, CLS < 0.1.
-- Accesibilidad: Cumplimiento de WCAG 2.1 Nivel AA (contraste de color ≥ 4.5:1, control de foco por teclado, etiquetas ARIA).
-- SEO y Rastreadores: Generación limpia de `sitemap.xml`, `robots.txt` y metadatos Open Graph.
-- Analítica externa (GA4, píxeles de seguimiento): Bloqueada hasta que el usuario otorgue consentimiento explícito de cookies.
+### Step 7: Quality Assurance, Accessibility & Deployment
+- Core Web Vitals targets: LCP < 2.5s, FID/INP < 200ms, CLS < 0.1.
+- Accessibility: WCAG 2.1 Level AA compliance (contrast ratio ≥ 4.5:1, keyboard focus management, ARIA labels).
+- SEO & Crawlers: Generate clean `sitemap.xml`, `robots.txt`, and Open Graph metadata.
+- Third-party analytics (e.g. GA4, Pixels) must remain blocked until explicit cookie consent is granted.
 
 ---
 
-## 4. Flujo de Trabajo Estándar (Local Primero -> Nube)
+## 4. Standard Deployment Workflow (Local First -> Cloud)
 
-1. **Verificación Local Obligatoria:** Todos los cambios, pruebas de integración y comprobaciones de seguridad deben correr y pasar localmente primero.
-2. **Despliegue Automatizado a Cloudflare Pages:**
+1. **Local-First Verification:** All changes, unit tests, and security assertions must run and pass locally first.
+2. **Automated Cloudflare Pages Deployment:**
    ```bash
-   # Configurar credencial de cuenta Cloudflare
-   export CLOUDFLARE_ACCOUNT_ID="tu_cloudflare_account_id"
+   # Set cloud account credentials
+   export CLOUDFLARE_ACCOUNT_ID="your_cloudflare_account_id"
 
-   # Desplegar aplicación o tienda a producción
-   npx wrangler pages deploy ./dist --project-name "mi-proyecto-web" --branch main
+   # Deploy production storefront or application
+   npx wrangler pages deploy ./dist --project-name "my-web-project" --branch main
    ```
-3. **Validación en Vivo:** Comprobar inmediatamente la URL pública desplegada antes de dar por completado el trabajo.
+3. **Edge Validation:** Perform immediate live health checks on the deployed edge URL before notifying completion.
 
 ---
 
-## 5. Créditos y Agradecimientos al Ecosistema Abierto
+## 5. Credits & Ecosystem Acknowledgments
 
-Este estándar sintetiza las mejores prácticas de la comunidad global de código abierto:
-- [Tailwind CSS](https://tailwindcss.com) por Tailwind Labs
-- [Lucide Icons](https://lucide.dev) por el Proyecto y Comunidad Lucide
-- [GSAP](https://gsap.com) por GreenSock
-- [Swiper](https://swiperjs.com) por Vladimir Kharlampidi
-- [Cloudflare Pages & Workers](https://developers.cloudflare.com/pages/) por Cloudflare
-- [Supabase](https://supabase.com) por el Equipo Supabase y la Comunidad PostgreSQL
-- [Iniciativa de Accesibilidad Web W3C (WAI-ARIA)](https://www.w3.org/WAI/)
+This standard synthesizes best practices from the global open-source community:
+- [Tailwind CSS](https://tailwindcss.com) by Tailwind Labs
+- [Lucide Icons](https://lucide.dev) by Lucide Project & Community
+- [GSAP](https://gsap.com) by GreenSock
+- [Swiper](https://swiperjs.com) by Vladimir Kharlampidi
+- [Cloudflare Pages & Workers](https://developers.cloudflare.com/pages/) by Cloudflare
+- [Supabase](https://supabase.com) by Supabase Team & PostgreSQL Community
+- [W3C Web Accessibility Initiative (WAI-ARIA)](https://www.w3.org/WAI/)
 
 ---
 
-## Licencia
+## License
 
-Este framework y sus instrucciones son de código abierto bajo la [Licencia MIT](LICENSE).  
-Siéntete libre de usarlo, compartirlo y adaptarlo para tus propios agentes de IA, repositorios y proyectos.
+This framework and its instructions are open-source and released under the [MIT License](LICENSE).  
+Feel free to use, share, and adapt it for your own AI agents, repositories, and development projects.
