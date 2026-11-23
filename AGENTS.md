@@ -1,16 +1,54 @@
 # Standards and Guidelines for Autonomous AI Agents in Web Development
 
 > **Universal standard for AI-assisted engineering, autonomous agents, and full-stack development teams.**  
-> Designed for building high-performance, compliant, secure, and production-grade web applications.
+> Designed for building high-performance, compliant, secure, human-crafted, and production-grade web applications.
+
+---
+
+## 0. Mandatory Agent Protocol: Interactive Discovery & Onboarding
+
+> [!IMPORTANT]
+> **RULE FOR THE AI AGENT:** Before generating, modifying, or architecting any project code, the agent **MUST** initiate an interactive interview with the user. The agent must gather the answers to the following 5 dimensions to tailor the architecture, visual style, copy, and legal framework:
+
+### 1. Brand Identity & Visual Context
+- **Company Name & Core Mission:** What is the business name, what does it do, and what value does it deliver?
+- **Logo & Visual Assets:** What are the logo's dominant colors, geometry, and personality? The agent must extract color tokens (Primary, Accent, Canvas, Surface) and recommend typography pairings based on this visual anchor.
+- **Brand Tone & Mood:** Luxury, clinical/dermatological, minimalist, organic/botanical, technical/developer, playful, or institutional.
+
+### 2. Products, Services & Business Model
+- **Commercial Offering:** Physical goods (e-commerce), digital downloads, SaaS subscriptions, consulting/appointments, or lead generation.
+- **Hero Offer:** What is the flagship product or core conversion target?
+
+### 3. Use Cases & System Requirements
+- **Functional Requirements:** Exact user capabilities (browsing, real-time cart, multi-step checkout, appointment scheduler, interactive diagnostic quiz, direct-to-WhatsApp orders, star ratings & reviews, coupon engine).
+- **Non-Functional Requirements:** Performance benchmarks (Core Web Vitals: LCP < 2.5s, CLS < 0.1, INP < 200ms), accessibility target (WCAG 2.1 Level AA), responsive breakpoints (mobile-first), and zero layout shift.
+
+### 4. Infrastructure, Server & Database Selection
+The user may choose any cloud provider or database. The agent must inquire which stack the user prefers and provide the framework's recommended baseline:
+- **Recommended Edge Hosting & DNS:** **Cloudflare Pages & Workers** (instant global CDN, ultra-low latency serverless edge execution, native security, and zero cold starts).
+- **Recommended Database & Auth:** **Supabase (PostgreSQL)** (strict multi-tenant Row-Level Security (RLS), ACID relational transactions, secure HttpOnly sessions, and encrypted storage).
+- *Open Flexibility:* If the user specifies AWS, Vercel, Firebase, Docker, MySQL, SQLite, or MongoDB, the agent must adapt the architecture cleanly without breaking separation of concerns.
+
+### 5. Legal Jurisdiction & Compliance Adaptation
+- **Operating Jurisdiction:** In which country or legal framework does the application operate? (e.g., Colombia: Ley 1581 / SIC, European Union: GDPR, United States: CCPA / FTC, Mexico: LFPDPPP).
+- **Mandatory Statutory Content:** Automatically generate bespoke `/terminos`, `/privacidad`, `/cookies`, and customer claims channel (PQRS / Support).
+- **Audit Consent Traceability:** Configure storage of client IP, server UTC timestamp, legal policy version accepted, and explicit boolean consent.
 
 ---
 
 ## 1. Core Principles & Architecture
 
-### 0. Clean Architecture & Separation of Concerns
-- **Explicit File Separation:** Keep languages separated in dedicated files (`.html`, `.css`, `.js`, `.ts`) directly aligned to modern web modularity or root structures. Avoid mixing inline stylesheets or inline scripts whenever possible.
-- **Problem-Fit Selection:** When choosing between languages, libraries, or architectures, always prioritize the option that delivers the highest real-world performance, clarity, security, and maintainability.
-- **Dependency Pragmatism:** Prefer lightweight, battle-tested, standard ecosystem libraries over convoluted abstractions.
+### Clean Architecture & Separation of Concerns
+- **Explicit Language Separation:** Keep languages in dedicated files (`.html`, `.css`, `.js`, `.ts`). Avoid inline styles, inline script attributes, or bloated monolithic files.
+- **Problem-Fit Selection:** Prioritize lightweight, battle-tested solutions that maximize performance, clarity, and maintainability over unnecessary framework layers.
+- **Zero-Friction Access (No Artificial Barriers):** Never hide catalog items, product prices, shopping bags, or checkout flows behind forced account creation or login prompts. Let visitors explore, add to cart, and buy seamlessly.
+
+### Human-Grade Copywriting (Anti-AI Text Standard)
+- **Eliminate AI Verbosity:** Ban filler sentences, robotic intros, redundant descriptions, and unnatural adjectives (e.g., "en el bullicioso mundo de hoy", "solución revolucionaria e integral").
+- **Concise & Direct:** Use human, conversational, punchy copy. Keep titles short, descriptions actionable, and button labels obvious (e.g., *"Añadir"*, *"Pedir por WhatsApp"*, *"Confirmar Pedido"*).
+
+### In-Place Direct Interactivity
+- Favor direct on-page interactions (clean inline forms, accordion answers, instant star pickers) over disruptive nested modals or cascading popups whenever possible.
 
 ---
 
@@ -32,10 +70,10 @@
 
 ```mermaid
 flowchart TD
-    A["0. Flat Structure & Language Separation"] --> B["1. Scope & Legal Requirements"]
+    A["0. Onboarding, Discovery & Brand Context"] --> B["1. Scope & Legal Requirements"]
     B --> C["2. Flows, Base Structure & Routes"]
-    C --> D["3. Design System & UI/UX"]
-    D --> E["4. Frontend States & Consent"]
+    C --> D["3. Design System & Dynamic Styling"]
+    D --> E["4. Frontend States & Zero-Friction UI"]
     E --> F["5. Fluid Motion & Micro-interactions"]
     F --> G["6. Backend, RLS & Traceability"]
     G --> H["7. Audit, WCAG 2.1 AA & Launch"]
@@ -43,7 +81,7 @@ flowchart TD
 
 ### Step 1: Scope, Use Cases & Legal Compliance
 - Define exact user journeys and transaction boundaries.
-- Formulate the 3 mandatory legal questions:
+- Address the 3 mandatory legal questions:
   1. *What specific personal data is collected and why?*
   2. *Under which legal jurisdiction does the transaction operate?*
   3. *What warranties, refund terms, and commercial promises are offered?*
@@ -57,7 +95,7 @@ flowchart TD
   - Direct support / customer claims channel (PQRS / Support Tickets)
 
 ### Step 3: Design System & Visual Hierarchy
-- Define a restrained palette: neutral canvas, distinct borders, and a single intentional accent color.
+- Generate a restrained palette anchored to the company logo: neutral canvas, distinct borders, and a single intentional accent color.
 - High-contrast, legible typography pairing (display + sans-serif).
 - Unified spacing scale and Lucide SVG icons (never emojis in production UI elements).
 
